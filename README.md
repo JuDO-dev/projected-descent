@@ -8,15 +8,33 @@ A simple, header-only C++ library for solving constrained optimization problems 
 | General Linear | 📝 To-do     | 📝 To-do |
 
 ## Features
-- Uses [Eigen](https://eigen.tuxfamily.org/) for fast linear algebra.
-- Supports different scalar types (e.g., float, double) and fixed-size arrays via templates.
-- Compatible with C++11 or higher.
+- **[Eigen](https://eigen.tuxfamily.org/)** for fast linear algebra operations.
+- **Templates** allow different scalar types (e.g., float, double), and fixed-size arrays.
+- **C++11** for wide compatibility across compilers.
 
-## Getting started
-1. Ensure you have [Eigen](https://eigen.tuxfamily.org/).
-2. Include the relevant header file.
-```cpp
-#include "projected-descent/box_constrained_qp.hpp"
+## Get via CMake
+Simply add the following to your CMakeLists.txt file.
+```cmake
+include(FetchContent)
+FetchContent_Declare(
+  eigen3
+  GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+  GIT_TAG 3.4.0
+  GIT_SHALLOW TRUE
+  GIT_PROGRESS TRUE
+)
+FetchContent_Declare(
+    projected-descent
+    GIT_REPOSITORY https://github.com/JuDO-dev/projected-descent.git
+    GIT_TAG main
+    GIT_SHALLOW TRUE
+    GIT_PROGRESS TRUE
+)
+FetchContent_MakeAvailable(eigen3 projected-descent)
+target_link_libraries(YOUR_TARGET
+  Eigen3::Eigen
+  projected_descent
+)
 ```
 
 ## Example usage
@@ -41,4 +59,4 @@ double f_x = solver.get_objective();
 ```
 
 ## References
-[Bertsekas, DP *Projected Newton methods for optimization problems with simple constraints* 1982](https://epubs.siam.org/doi/abs/10.1137/0320018)
+1. [Bertsekas, DP *Projected Newton methods for optimization problems with simple constraints* 1982](https://epubs.siam.org/doi/abs/10.1137/0320018)
