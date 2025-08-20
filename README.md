@@ -39,7 +39,7 @@ target_link_libraries(YOUR_TARGET
 
 ## Example usage
 ```cpp
-#include "projected-descent/box_constrained_qp.hpp"
+#include <projected-descent/box_constrained_qp.hpp>
 
 using T = double;
 constexpr int N = 2;
